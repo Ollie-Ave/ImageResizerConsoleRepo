@@ -1,4 +1,4 @@
-﻿using CommandLineParsingTest;
+﻿using ImageResizer;
 using NUnit.Framework;
 using SixLabors.ImageSharp.Processing;
 

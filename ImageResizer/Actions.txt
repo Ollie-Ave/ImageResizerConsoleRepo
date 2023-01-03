@@ -1,0 +1,8 @@
+﻿Moving Forwards.
+
+Seperate out functionality so that it is not dependent on the command line options package
+
+Look into other ways of importing the file to work on (filestream from anywhere)
+Compartmentalised code that runs in isolation 
+
+Move functionality to static class

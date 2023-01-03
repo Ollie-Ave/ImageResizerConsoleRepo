@@ -2,7 +2,7 @@
 
 [assembly: InternalsVisibleTo("ImageResizer.UnitTests")]
 
-namespace CommandLineParsingTest
+namespace ImageResizer
 {
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.Processing;

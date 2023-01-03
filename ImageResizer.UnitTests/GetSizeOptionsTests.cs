@@ -1,6 +1,6 @@
 namespace ImageResizer.UnitTests
 {
-    using CommandLineParsingTest;
+    using ImageResizer;
     using NUnit.Framework;
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.PixelFormats;

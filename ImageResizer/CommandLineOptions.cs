@@ -1,5 +1,5 @@
 ﻿
-namespace CommandLineParsingTest
+namespace ImageResizer
 {
     using CommandLine;
 

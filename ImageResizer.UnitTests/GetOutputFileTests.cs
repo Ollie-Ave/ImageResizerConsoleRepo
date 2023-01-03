@@ -1,4 +1,4 @@
-﻿using CommandLineParsingTest;
+﻿using ImageResizer;
 using NUnit.Framework;
 
 namespace ImageResizer.UnitTests
