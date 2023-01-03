@@ -62,12 +62,12 @@ namespace CommandLineParsingTest
                 //string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
                 // Used if you want the processed image to be spat out into the same directory as the input
-                string path = Path.GetFullPath(options.InputFile).Replace(Path.GetFileName(options.InputFile), string.Empty);
                 // Ex: C:\Users\oliver\Downloads
-                string fileName = Path.GetFileNameWithoutExtension(options.InputFile); 
+                string path = Path.GetFullPath(options.InputFile).Replace(Path.GetFileName(options.InputFile), string.Empty);
                 // The name of the inputted image (without extension)
-                string extension = Path.GetExtension(options.InputFile); 
+                string fileName = Path.GetFileNameWithoutExtension(options.InputFile); 
                 // gets the file extension of the inputted image
+                string extension = Path.GetExtension(options.InputFile); 
 
                 // those three values are stored seperately so that the parameters passed can be added after the filename but before the extension
 
