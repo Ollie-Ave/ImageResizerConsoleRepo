@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "an/FtsRTu+2VVaG9JPujhR3Vy4xkJJ1WWZgBNBbDEmZf5RQcnBQaiosWEiDHc8Y26mfeuXezixi6liG+COqxxw==",
+  "dgSpecHash": "zG621m/5+ReYbAHaKzVcRdajHUoYSij1328axcZvkgYmljpHOtdYghgS3A5uU2imNEi0ugnEIfIG0nb615y5GQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\oliver\\source\\repos\\ImageResizer\\ImageResizerConsole\\ImageResizer.UnitTests\\ImageResizer.UnitTests.csproj",
+  "projectFilePath": "C:\\Users\\oliver\\source\\repos\\ImageResizerConsoleRepo\\ImageResizer.UnitTests\\ImageResizer.UnitTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\oliver\\.nuget\\packages\\commandlineparser\\2.9.1\\commandlineparser.2.9.1.nupkg.sha512",
     "C:\\Users\\oliver\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",

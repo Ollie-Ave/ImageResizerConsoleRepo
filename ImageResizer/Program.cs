@@ -62,13 +62,17 @@ namespace CommandLineParsingTest
                 //string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
                 // Used if you want the processed image to be spat out into the same directory as the input
-                string path = Path.GetFullPath(options.InputFile).Replace(Path.GetFileName(options.InputFile), string.Empty); // Ex: C:\Users\oliver\Downloads
-                string fileName = Path.GetFileNameWithoutExtension(options.InputFile); // The name of the inputted image (without extension)
-                string extension = Path.GetExtension(options.InputFile); // gets the file extension of the inputted image
+                string path = Path.GetFullPath(options.InputFile).Replace(Path.GetFileName(options.InputFile), string.Empty);
+                // Ex: C:\Users\oliver\Downloads
+                string fileName = Path.GetFileNameWithoutExtension(options.InputFile); 
+                // The name of the inputted image (without extension)
+                string extension = Path.GetExtension(options.InputFile); 
+                // gets the file extension of the inputted image
 
                 // those three values are stored seperately so that the parameters passed can be added after the filename but before the extension
 
-                using (Image image = Image.Load(options.InputFile)) // Load the image into memory
+                using (Image image = Image.Load(options.InputFile)) 
+                // Load the image into memory
                 {
                     // Here stopwatch has the purpose of tracking the timings for the image manipulations
                     Stopwatch stopWatch = new();
@@ -81,14 +85,16 @@ namespace CommandLineParsingTest
                         Sampler = Sampler 
                     };
 
-                    Debug.WriteLine("Getting mutate config: " + stopWatch.ElapsedMilliseconds); // Timekeeping
+                    // Timekeeping
+                    Debug.WriteLine("Getting mutate config: " + stopWatch.ElapsedMilliseconds); 
                     stopWatch.Restart();
 
 
                     // apply configuration defined above
                     image.Mutate(x => x.Resize(resizeOptions));
 
-                    Debug.WriteLine("Getting mutatation: " + stopWatch.ElapsedMilliseconds); // Timekeeping
+                    // Timekeeping
+                    Debug.WriteLine("Getting mutatation: " + stopWatch.ElapsedMilliseconds); 
                     stopWatch.Restart();
 
                     // Creates a new image in memory
@@ -97,7 +103,8 @@ namespace CommandLineParsingTest
                     // Save new image to hard drive
                     newImage.Save(GetOutputFile(options, path, fileName, extension));
 
-                    Debug.WriteLine("Save image: " + stopWatch.ElapsedMilliseconds); // Timekeeping
+                    // Timekeeping
+                    Debug.WriteLine("Save image: " + stopWatch.ElapsedMilliseconds); 
                     stopWatch.Stop();
                 }
             }

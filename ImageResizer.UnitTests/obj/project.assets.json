@@ -4217,11 +4217,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\oliver\\source\\repos\\ImageResizer\\ImageResizerConsole\\ImageResizer.UnitTests\\ImageResizer.UnitTests.csproj",
+      "projectUniqueName": "C:\\Users\\oliver\\source\\repos\\ImageResizerConsoleRepo\\ImageResizer.UnitTests\\ImageResizer.UnitTests.csproj",
       "projectName": "ImageResizer.UnitTests",
-      "projectPath": "C:\\Users\\oliver\\source\\repos\\ImageResizer\\ImageResizerConsole\\ImageResizer.UnitTests\\ImageResizer.UnitTests.csproj",
+      "projectPath": "C:\\Users\\oliver\\source\\repos\\ImageResizerConsoleRepo\\ImageResizer.UnitTests\\ImageResizer.UnitTests.csproj",
       "packagesPath": "C:\\Users\\oliver\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\oliver\\source\\repos\\ImageResizer\\ImageResizerConsole\\ImageResizer.UnitTests\\obj\\",
+      "outputPath": "C:\\Users\\oliver\\source\\repos\\ImageResizerConsoleRepo\\ImageResizer.UnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\oliver\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4238,8 +4238,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\oliver\\source\\repos\\ImageResizer\\ImageResizerConsole\\ImageResizer\\ImageResizer.csproj": {
-              "projectPath": "C:\\Users\\oliver\\source\\repos\\ImageResizer\\ImageResizerConsole\\ImageResizer\\ImageResizer.csproj"
+            "C:\\Users\\oliver\\source\\repos\\ImageResizerConsoleRepo\\ImageResizer\\ImageResizer.csproj": {
+              "projectPath": "C:\\Users\\oliver\\source\\repos\\ImageResizerConsoleRepo\\ImageResizer\\ImageResizer.csproj"
             }
           }
         }

@@ -2,7 +2,7 @@
   "profiles": {
     "ImageResizer": {
       "commandName": "Project",
-      "commandLineArgs": "-i C:\\Users\\oliver\\Downloads\\business_cover.jpeg\r\n-h 100\r\n-w 100\r\n--scale both\r\n--mode crop"
+      "commandLineArgs": "-i C:\\Users\\oliver\\Downloads\\business_cover.jpeg\r\n--scale both\r\n--mode crop"
     }
   }
 }

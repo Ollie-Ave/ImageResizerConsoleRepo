@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mnfdmH2kzzsNCoY4cREyyuw7mzJoJxpGwPWSrghg700Ma7S1iMhe+aQqZfPLnpkFkf6fiejTWz0rAXpW7nh6kw==",
+  "dgSpecHash": "Yi2+vlFFo0srNW+sthy6wBvVcEzVHLPkd7LIFYsHsULXuExCWu+rjkmsrz45Deg9660VwPRaNvYYmJBylNM7zg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\oliver\\source\\repos\\ImageResizer\\ImageResizerConsole\\ImageResizer\\ImageResizer.csproj",
+  "projectFilePath": "C:\\Users\\oliver\\source\\repos\\ImageResizerConsoleRepo\\ImageResizer\\ImageResizer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\oliver\\.nuget\\packages\\commandlineparser\\2.9.1\\commandlineparser.2.9.1.nupkg.sha512",
     "C:\\Users\\oliver\\.nuget\\packages\\microsoft.io.recyclablememorystream\\2.2.0\\microsoft.io.recyclablememorystream.2.2.0.nupkg.sha512",

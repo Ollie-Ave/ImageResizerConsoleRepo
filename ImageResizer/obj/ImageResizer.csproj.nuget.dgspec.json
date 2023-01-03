@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\oliver\\source\\repos\\ImageResizer\\ImageResizerConsole\\ImageResizer\\ImageResizer.csproj": {}
+    "C:\\Users\\oliver\\source\\repos\\ImageResizerConsoleRepo\\ImageResizer\\ImageResizer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\oliver\\source\\repos\\ImageResizer\\ImageResizerConsole\\ImageResizer\\ImageResizer.csproj": {
+    "C:\\Users\\oliver\\source\\repos\\ImageResizerConsoleRepo\\ImageResizer\\ImageResizer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\oliver\\source\\repos\\ImageResizer\\ImageResizerConsole\\ImageResizer\\ImageResizer.csproj",
+        "projectUniqueName": "C:\\Users\\oliver\\source\\repos\\ImageResizerConsoleRepo\\ImageResizer\\ImageResizer.csproj",
         "projectName": "ImageResizer",
-        "projectPath": "C:\\Users\\oliver\\source\\repos\\ImageResizer\\ImageResizerConsole\\ImageResizer\\ImageResizer.csproj",
+        "projectPath": "C:\\Users\\oliver\\source\\repos\\ImageResizerConsoleRepo\\ImageResizer\\ImageResizer.csproj",
         "packagesPath": "C:\\Users\\oliver\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\oliver\\source\\repos\\ImageResizer\\ImageResizerConsole\\ImageResizer\\obj\\",
+        "outputPath": "C:\\Users\\oliver\\source\\repos\\ImageResizerConsoleRepo\\ImageResizer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\oliver\\AppData\\Roaming\\NuGet\\NuGet.Config",
