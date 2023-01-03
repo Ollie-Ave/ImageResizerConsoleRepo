@@ -37,6 +37,8 @@ namespace CommandLineParsingTest
                 // Used if you want the processed imaged to be dumped in the 'bin' folder
                 //string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
+                //test edit
+
                 // Used if you want the processed image to be spat out into the same directory as the input
                 // Ex: C:\Users\oliver\Downloads
                 string path = Path.GetFullPath(options.InputFile).Replace(Path.GetFileName(options.InputFile), string.Empty);

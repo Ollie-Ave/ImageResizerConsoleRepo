@@ -297,11 +297,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\oliver\\source\\repos\\ImageResizerConsoleRepo\\ImageResizer\\ImageResizer.csproj",
+      "projectUniqueName": "C:\\Users\\oliver\\Documents\\GitHub\\ImageResizerConsoleRepo\\ImageResizer\\ImageResizer.csproj",
       "projectName": "ImageResizer",
-      "projectPath": "C:\\Users\\oliver\\source\\repos\\ImageResizerConsoleRepo\\ImageResizer\\ImageResizer.csproj",
+      "projectPath": "C:\\Users\\oliver\\Documents\\GitHub\\ImageResizerConsoleRepo\\ImageResizer\\ImageResizer.csproj",
       "packagesPath": "C:\\Users\\oliver\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\oliver\\source\\repos\\ImageResizerConsoleRepo\\ImageResizer\\obj\\",
+      "outputPath": "C:\\Users\\oliver\\Documents\\GitHub\\ImageResizerConsoleRepo\\ImageResizer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\oliver\\AppData\\Roaming\\NuGet\\NuGet.Config",
