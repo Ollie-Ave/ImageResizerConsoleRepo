@@ -4,6 +4,8 @@
 
 namespace ImageResizer
 {
+    using CommandLine.Text;
+    using CommandLine;
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.Processing;
     using SixLabors.ImageSharp.Processing.Processors.Transforms;
@@ -11,7 +13,7 @@ namespace ImageResizer
 
     public static class ImageResizer
     {
-        internal static string GetOutputFile(CommandLineOptions options, string path, string fileName, string extension)
+        internal static string GetOutputFile(Options options, string path, string fileName, string extension)
         {
             // This function returns the new filename of the image.
 
@@ -35,7 +37,7 @@ namespace ImageResizer
             return options.OutputFile;
         }
 
-        internal static ResizeMode GetScaleOptions(CommandLineOptions options)
+        internal static ResizeMode GetScaleOptions(Options options)
         {
             // Simple function that converts the string inputted into the ResizeMode format
             // ResizeMode is defined by imagesharp
@@ -49,7 +51,7 @@ namespace ImageResizer
             };
         }
 
-        internal static Size GetSizeOptions(CommandLineOptions options, Image image)
+        internal static Size GetSizeOptions(Options options, Image image)
         {
             // Returns a width and height for the new image based on Width, Height, Scale properties
 
@@ -65,7 +67,7 @@ namespace ImageResizer
         }
 
 
-        internal static void ProcessImage(CommandLineOptions options, string path, string fileName, string extension)
+        internal static void ProcessImage(Options options, string path, string fileName, string extension)
         {
             IResampler sampler = KnownResamplers.Bicubic;
 

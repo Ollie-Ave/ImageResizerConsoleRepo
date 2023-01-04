@@ -25,7 +25,9 @@ namespace ImageResizer.UnitTests
             string filename = "test";
             string extension = ".png";
 
-            string outputFile = Program.GetOutputFile(commandLineOptions, path, filename, extension);
+            Options options = new(commandLineOptions);
+
+            string outputFile = ImageResizer.GetOutputFile(options, path, filename, extension);
 
             Assert.That(outputFile, Is.EqualTo("C:\\test---w-100---h-100---m-crop---s-both.png"));
         }
@@ -44,7 +46,9 @@ namespace ImageResizer.UnitTests
             string filename = "test";
             string extension = ".png";
 
-            string outputFile = Program.GetOutputFile(commandLineOptions, path, filename, extension);
+            Options options = new(commandLineOptions);
+
+            string outputFile = ImageResizer.GetOutputFile(options, path, filename, extension);
 
             Assert.That(outputFile, Is.EqualTo("C:\\test---w-100---h-100---s-both.png"));
         }
@@ -63,7 +67,9 @@ namespace ImageResizer.UnitTests
             string filename = "test";
             string extension = ".png";
 
-            string outputFile = Program.GetOutputFile(commandLineOptions, path, filename, extension);
+            Options options = new(commandLineOptions);
+
+            string outputFile = ImageResizer.GetOutputFile(options, path, filename, extension);
 
             Assert.That(outputFile, Is.EqualTo("C:\\test---w-100---h-100---m-crop.png"));
         }
@@ -82,7 +88,9 @@ namespace ImageResizer.UnitTests
             string filename = "test";
             string extension = ".png";
 
-            string outputFile = Program.GetOutputFile(commandLineOptions, path, filename, extension);
+            Options options = new(commandLineOptions);
+
+            string outputFile = ImageResizer.GetOutputFile(options, path, filename, extension);
 
             Assert.That(outputFile, Is.EqualTo("C:\\test---w-100---m-crop---s-both.png"));
         }
@@ -101,7 +109,9 @@ namespace ImageResizer.UnitTests
             string filename = "test";
             string extension = ".png";
 
-            string outputFile = Program.GetOutputFile(commandLineOptions, path, filename, extension);
+            Options options = new(commandLineOptions);
+
+            string outputFile = ImageResizer.GetOutputFile(options, path, filename, extension);
 
             Assert.That(outputFile, Is.EqualTo("C:\\test---h-100---m-crop---s-both.png"));
         }
@@ -119,7 +129,9 @@ namespace ImageResizer.UnitTests
             string filename = "test";
             string extension = ".png";
 
-            string outputFile = Program.GetOutputFile(commandLineOptions, path, filename, extension);
+            Options options = new(commandLineOptions);
+
+            string outputFile = ImageResizer.GetOutputFile(options, path, filename, extension);
 
             Assert.That(outputFile, Is.EqualTo("C:\\test.png"));
         }

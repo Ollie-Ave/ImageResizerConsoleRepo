@@ -1,6 +1,5 @@
 namespace ImageResizer.UnitTests
 {
-    using ImageResizer;
     using NUnit.Framework;
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.PixelFormats;
@@ -21,7 +20,9 @@ namespace ImageResizer.UnitTests
                 Width = 100,
             };
 
-            Size actual = Program.GetSizeOptions(commandLineOptions, ImageUnderTest);
+            Options options = new(commandLineOptions);
+
+            Size actual = ImageResizer.GetSizeOptions(options, ImageUnderTest);
 
             Assert.That(actual.Height, Is.EqualTo(200));
         }
@@ -36,7 +37,9 @@ namespace ImageResizer.UnitTests
                 Height = 350
             };
 
-            Size actual = Program.GetSizeOptions(commandLineOptions, ImageUnderTest);
+            Options options = new(commandLineOptions);
+
+            Size actual = ImageResizer.GetSizeOptions(options, ImageUnderTest);
 
             Assert.That(actual.Height, Is.EqualTo(200));
         }
@@ -52,7 +55,9 @@ namespace ImageResizer.UnitTests
                 Scale = "horizontal"
             };
 
-            Size actual = Program.GetSizeOptions(commandLineOptions, ImageUnderTest);
+            Options options = new(commandLineOptions);
+
+            Size actual = ImageResizer.GetSizeOptions(options, ImageUnderTest);
 
             Assert.That(actual.Height, Is.EqualTo(350));
         }
@@ -66,7 +71,9 @@ namespace ImageResizer.UnitTests
                 Height = 100,
             };
 
-            Size actual = Program.GetSizeOptions(commandLineOptions, ImageUnderTest);
+            Options options = new(commandLineOptions);
+
+            Size actual = ImageResizer.GetSizeOptions(options, ImageUnderTest);
 
             Assert.That(actual.Width, Is.EqualTo(100));
         }
@@ -81,7 +88,9 @@ namespace ImageResizer.UnitTests
                 Height = 350
             };
 
-            Size actual = Program.GetSizeOptions(commandLineOptions, ImageUnderTest);
+            Options options = new(commandLineOptions);
+
+            Size actual = ImageResizer.GetSizeOptions(options, ImageUnderTest);
 
             Assert.That(actual.Width, Is.EqualTo(100));
         }
@@ -97,7 +106,9 @@ namespace ImageResizer.UnitTests
                 Scale = "vertical"
             };
 
-            Size actual = Program.GetSizeOptions(commandLineOptions, ImageUnderTest);
+            Options options = new(commandLineOptions);
+
+            Size actual = ImageResizer.GetSizeOptions(options, ImageUnderTest);
 
             Assert.That(actual.Width, Is.EqualTo(200));
         }
@@ -112,7 +123,9 @@ namespace ImageResizer.UnitTests
                 Scale = "both"
             };
 
-            Size actual = Program.GetSizeOptions(commandLineOptions, ImageUnderTest);
+            Options options = new(commandLineOptions);
+
+            Size actual = ImageResizer.GetSizeOptions(options, ImageUnderTest);
 
             Size expectedResult = new()
             {

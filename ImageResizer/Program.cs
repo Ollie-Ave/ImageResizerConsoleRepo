@@ -25,14 +25,15 @@ namespace ImageResizer
 
         private static void HandleParseError(IEnumerable errors)
         {
-            Console.WriteLine("Command Line parameters provided were not valid!");
+            Console.WriteLine("Command Line parameters provided were not valid! Try -h");
         }
 
 
-        private static void ReturnImageCallback(CommandLineOptions options)
+        private static void ReturnImageCallback(CommandLineOptions commandLineOptions)
         {
             try
             {
+                Options options = new(commandLineOptions);  
 
                 // Used if you want the processed imaged to be dumped in the 'bin' folder
                 //string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);

@@ -16,8 +16,9 @@ namespace ImageResizer.UnitTests
             {
             };
 
+            Options options = new(commandLineOptions);
 
-            ResizeMode mode = Program.GetScaleOptions(commandLineOptions);
+            ResizeMode mode = ImageResizer.GetScaleOptions(options);
 
             Assert.That(mode, Is.EqualTo(ResizeMode.Pad));
 
@@ -31,7 +32,9 @@ namespace ImageResizer.UnitTests
                 Mode = "crop"
             };
 
-            ResizeMode mode = Program.GetScaleOptions(commandLineOptions);
+            Options options = new(commandLineOptions);
+
+            ResizeMode mode = ImageResizer.GetScaleOptions(options);
 
             Assert.That(mode, Is.EqualTo(ResizeMode.Crop));
 
@@ -45,8 +48,9 @@ namespace ImageResizer.UnitTests
                 Mode = "Invalid Mode"
             };
 
+            Options options = new(commandLineOptions);
 
-            ResizeMode mode = Program.GetScaleOptions(commandLineOptions);
+            ResizeMode mode = ImageResizer.GetScaleOptions(options);
 
             Assert.That(mode, Is.EqualTo(ResizeMode.Pad));
         }
