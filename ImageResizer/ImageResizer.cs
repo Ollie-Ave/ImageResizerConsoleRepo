@@ -19,32 +19,43 @@ namespace ImageResizer
     using SixLabors.ImageSharp.Formats.Tiff;
     using SixLabors.ImageSharp.Formats.Tga;
     using SixLabors.ImageSharp.Formats.Webp;
-    using System.Security.Cryptography;
 
     public static class ImageResizer
     {
-        internal static string GetOutputFile(Options options, string path, string fileName, string extension)
+        internal static string GetOutputFile(Options options, string outLocation)
         {
-            // This function returns the new filename of the image.
+            // This function returns the new (full) filepath of the image.
 
-            if (string.IsNullOrWhiteSpace(options.OutputFile))
+            if (!string.IsNullOrWhiteSpace(options.InputFile))
             {
-                // For each of these statements it is simply checking if the option has been passed in
-                // if it has it will save a string to be appended onto the filename later
-                // if it does not it will simply save an empty string 
+                // gets the file extension of the inputted image
+                string extension = Path.GetExtension(options.InputFile);
 
-                string widthSuffix = options.Width > 0 ? $"---w-{options.Width}" : string.Empty;
-                string heightSuffix = options.Height > 0 ? $"---h-{options.Height}" : string.Empty;
-                string modeSuffix = !string.IsNullOrWhiteSpace(options.Mode) ? $"---m-{options.Mode}" : string.Empty;
-                string scaleSuffix = !string.IsNullOrWhiteSpace(options.Scale) ? $"---s-{options.Scale}" : string.Empty;
+                // The name of the inputted image (without extension)
+                string fileName = Path.GetFileNameWithoutExtension(options.InputFile);
 
-                // Combine the predefined suffixes, original filename and extension
-                string ouputFilename = $"{fileName}{widthSuffix}{heightSuffix}{modeSuffix}{scaleSuffix}{extension}";
 
-                options.OutputFile = Path.Combine(path, ouputFilename);
+                if (string.IsNullOrWhiteSpace(options.OutputFile))
+                {
+                    // For each of these statements it is simply checking if the option has been passed in
+                    // if it has it will save a string to be appended onto the filename later
+                    // if it does not it will simply save an empty string 
+
+                    string widthSuffix = options.Width > 0 ? $"---w-{options.Width}" : string.Empty;
+                    string heightSuffix = options.Height > 0 ? $"---h-{options.Height}" : string.Empty;
+                    string modeSuffix = !string.IsNullOrWhiteSpace(options.Mode) ? $"---m-{options.Mode}" : string.Empty;
+                    string scaleSuffix = !string.IsNullOrWhiteSpace(options.Scale) ? $"---s-{options.Scale}" : string.Empty;
+
+                    // Combine the predefined suffixes, original filename and extension
+                    string ouputFilename = $"{fileName}{widthSuffix}{heightSuffix}{modeSuffix}{scaleSuffix}{extension}";
+
+                    options.OutputFile = Path.Combine(outLocation, ouputFilename);
+                }
+
+                return options.OutputFile;
             }
 
-            return options.OutputFile;
+            return "Error, inputFile not specified";
         }
 
         internal static ResizeMode GetScaleOptions(Options options)
@@ -96,9 +107,13 @@ namespace ImageResizer
             };
         }
 
-        internal static byte[] ProcessImage(Options options, string extension,byte[] imageAsBytes)
+        internal static byte[] ProcessImage(Options options, byte[] imageAsBytes)
         {
             IResampler sampler = KnownResamplers.Bicubic;
+
+
+            // gets the file extension of the inputted image
+            string extension = Path.GetExtension(options.InputFile);
 
             var image = Image.Load<Rgba32>(imageAsBytes);
 

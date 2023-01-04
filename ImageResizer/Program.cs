@@ -39,20 +39,13 @@ namespace ImageResizer
                 Options options = new(commandLineOptions);  
 
                 // Temporary output folder
-                string path = "C:\\Users\\oliver\\Downloads";
+                string outputPath = "C:\\Users\\oliver\\Downloads";
 
-                // Used if you want the processed image to be spat out into the same directory as the input
-                // Ex: C:\Users\oliver\Downloads
-                //string path = Path.GetFullPath(options.InputFile).Replace(Path.GetFileName(options.InputFile), string.Empty);
-
-                // Img url
+                // Img url (can also be filepath)
                 string url = options.InputFile;
 
-                // The name of the inputted image (without extension)
-                string fileName = Path.GetFileNameWithoutExtension(url);
+                
 
-                // gets the file extension of the inputted image
-                string extension = Path.GetExtension(url);
 
                 // those three values are stored seperately so that the parameters passed can be added after the filename but before the extension
 
@@ -71,17 +64,26 @@ namespace ImageResizer
 
                 using (WebClient webClient = new())
                 {
-                    // Grab the byte array from requested location
-                    byte[] data = webClient.DownloadData(url);
+                    try
+                    {
+                        // Grab the byte array from requested location
+                        byte[] data = webClient.DownloadData(options.InputFile);
 
-                    // Process image
-                    byte[] newImageAsBytes = ImageResizer.ProcessImage(options, extension ,data);
+                        // Process image
+                        byte[] newImageAsBytes = ImageResizer.ProcessImage(options, data);
 
-                    // Convert processed byte array into imagesharp format
-                    Image newImage = Image.Load(newImageAsBytes);
+                        // Convert processed byte array into imagesharp format
+                        Image newImage = Image.Load(newImageAsBytes);
 
-                    // Save image to hard drive
-                    newImage.Save(ImageResizer.GetOutputFile(options, path, fileName, extension));
+                        // Save image to hard drive
+                        newImage.Save(ImageResizer.GetOutputFile(options, outputPath));
+                    }
+                    catch(WebException exeption)
+                    {
+                        Debug.WriteLine($"Error: {exeption.Message}");
+                    }
+
+
                 } // Dispose
 
 
