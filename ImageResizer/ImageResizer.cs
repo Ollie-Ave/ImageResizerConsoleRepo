@@ -87,6 +87,20 @@ namespace ImageResizer
             return new(width, height);
         }
 
+        public static byte[] ToByteArray(Image image, IImageFormat imageFormat)
+        {
+            // This function removes dependency on filesystem
+            // I.e it allows ImageResizer.ProcessImage not to care about how you got the image (stored as a byte array)
+            // All the previously mentioned function cares about is simply that it has the image, not where you got it from
+
+            using (var memoryStream = new MemoryStream())
+            {
+                var imageEncoder = image.GetConfiguration().ImageFormatsManager.FindEncoder(imageFormat);
+                image.Save(memoryStream, imageEncoder);
+                return memoryStream.ToArray();
+            }
+        }
+
         public static IImageFormat GetImageFormat(string extension)
         {
             // Converts String representation of extension to imagesharp format
@@ -103,7 +117,7 @@ namespace ImageResizer
                 ".tiff" => TiffFormat.Instance,
                 ".tga" => TgaFormat.Instance,
                 ".webp" => WebpFormat.Instance,
-                _ => PngFormat.Instance // FileFormat Unsupported by imageSharp
+                _ => PngFormat.Instance // FileFormat Unsupported by imageSharp, Fallback to png formatting
             };
         }
 
@@ -150,20 +164,6 @@ namespace ImageResizer
 
 
             return newImageAsBytes;
-        }
-
-        public static byte[] ToByteArray(Image image, IImageFormat imageFormat)
-        {
-            // This function removes dependency on filesystem
-            // I.e it allows ImageResizer.Process image not to care about how you got the image (stored as a byte array)
-            // All the previously mentioned function cares about is simply that it has the image, not where you got it from
-
-            using (var memoryStream = new MemoryStream())
-            {
-                var imageEncoder = image.GetConfiguration().ImageFormatsManager.FindEncoder(imageFormat);
-                image.Save(memoryStream, imageEncoder);
-                return memoryStream.ToArray();
-            }
         }
 
     }

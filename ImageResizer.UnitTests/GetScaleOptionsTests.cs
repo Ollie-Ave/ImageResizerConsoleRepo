@@ -1,5 +1,4 @@
-﻿using ImageResizer;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using SixLabors.ImageSharp.Processing;
 
 namespace ImageResizer.UnitTests

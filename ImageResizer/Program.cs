@@ -7,6 +7,8 @@ namespace ImageResizer
 {
     using CommandLine;
     using SixLabors.ImageSharp;
+    using SixLabors.ImageSharp.Formats.Png;
+    using SixLabors.ImageSharp.PixelFormats;
     using System.Collections;
     using System.Diagnostics;
     using System.Net;
@@ -43,8 +45,6 @@ namespace ImageResizer
 
                 // Img url (can also be filepath)
                 string url = options.InputFile;
-
-                
 
 
                 // those three values are stored seperately so that the parameters passed can be added after the filename but before the extension
@@ -85,8 +85,6 @@ namespace ImageResizer
 
 
                 } // Dispose
-
-
             }
             catch (System.IO.FileNotFoundException ex) // error handling for if the image cannot be found
             {

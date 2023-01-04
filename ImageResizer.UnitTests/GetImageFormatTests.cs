@@ -27,5 +27,15 @@ namespace ImageResizer.UnitTests
             Assert.That(format, Is.EqualTo(JpegFormat.Instance));
         }
 
+        [Test]
+        public void WhenNoFileFormatGivenExpectFallbackToPngFormatInstance()
+        {
+            string extension = string.Empty;
+
+            IImageFormat format = ImageResizer.GetImageFormat(extension);
+
+            Assert.That(format, Is.EqualTo(PngFormat.Instance));
+        }
+
     }
 }
