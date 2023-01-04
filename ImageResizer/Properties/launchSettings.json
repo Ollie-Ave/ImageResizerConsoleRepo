@@ -2,7 +2,7 @@
   "profiles": {
     "ImageResizer": {
       "commandName": "Project",
-      "commandLineArgs": "-i C:\\Users\\oliver\\Downloads\\test_image.jpg\r\n-w 500\r\n-h 300\r\n--scale both\r\n--mode crop"
+      "commandLineArgs": "-i C:\\Users\\oliver\\Downloads\\man.webp\r\n-w 5005\r\n-h 300\r\n--scale both\r\n--mode crop"
     },
     "WSL": {
       "commandName": "WSL2",

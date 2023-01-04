@@ -10,6 +10,8 @@ namespace ImageResizer
     using SixLabors.ImageSharp.Processing;
     using SixLabors.ImageSharp.Processing.Processors.Transforms;
     using System.Diagnostics;
+    using SixLabors.ImageSharp.PixelFormats;
+    using System.Collections;
 
     public static class ImageResizer
     {
@@ -67,47 +69,44 @@ namespace ImageResizer
         }
 
 
-        internal static void ProcessImage(Options options, string path, string fileName, string extension)
+        internal static void ProcessImage(Options options, string path, string fileName, string extension, byte[] imageAsBytes)
         {
             IResampler sampler = KnownResamplers.Bicubic;
 
+            var image = Image.Load<Rgba32>(imageAsBytes);
 
-            using (Image image = Image.Load(options.InputFile))
-            // Load the image into memory
+            // Here stopwatch has the purpose of tracking the timings for the image manipulations
+            Stopwatch stopWatch = new();
+            stopWatch.Start();
+
+            ResizeOptions resizeOptions = new()
             {
-                // Here stopwatch has the purpose of tracking the timings for the image manipulations
-                Stopwatch stopWatch = new();
-                stopWatch.Start();
+                Size = GetSizeOptions(options, image),
+                Mode = GetScaleOptions(options),
+                Sampler = sampler
+            };
 
-                ResizeOptions resizeOptions = new()
-                {
-                    Size = GetSizeOptions(options, image),
-                    Mode = GetScaleOptions(options),
-                    Sampler = sampler
-                };
-
-                // Timekeeping
-                Debug.WriteLine("Getting mutate config: " + stopWatch.ElapsedMilliseconds);
-                stopWatch.Restart();
+            // Timekeeping
+            Debug.WriteLine("Getting mutate config: " + stopWatch.ElapsedMilliseconds);
+            stopWatch.Restart();
 
 
-                // apply configuration defined above
-                image.Mutate(x => x.Resize(resizeOptions));
+            // apply configuration defined above
+            image.Mutate(x => x.Resize(resizeOptions));
 
-                // Timekeeping
-                Debug.WriteLine("Getting mutatation: " + stopWatch.ElapsedMilliseconds);
-                stopWatch.Restart();
+            // Timekeeping
+            Debug.WriteLine("Getting mutatation: " + stopWatch.ElapsedMilliseconds);
+            stopWatch.Restart();
 
-                // Creates a new image in memory
-                Image newImage = image;
+            // Creates a new image in memory
+            Image newImage = image;
 
-                // Save new image to hard drive
-                newImage.Save(GetOutputFile(options, path, fileName, extension));
+            // Save new image to hard drive
+            newImage.Save(GetOutputFile(options, path, fileName, extension));
 
-                // Timekeeping
-                Debug.WriteLine("Save image: " + stopWatch.ElapsedMilliseconds);
-                stopWatch.Stop();
-            }
+            // Timekeeping
+            Debug.WriteLine("Save image: " + stopWatch.ElapsedMilliseconds);
+            stopWatch.Stop();
         }
     }
 }

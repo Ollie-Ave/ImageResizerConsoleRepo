@@ -1,10 +1,16 @@
 ﻿using System.Runtime.CompilerServices;
 
+
 [assembly: InternalsVisibleTo("ImageResizer.UnitTests")]
 
 namespace ImageResizer
 {
     using CommandLine;
+    using SixLabors.ImageSharp;
+    using SixLabors.ImageSharp.Advanced;
+    using SixLabors.ImageSharp.Formats;
+    using SixLabors.ImageSharp.Formats.Png;
+    using SixLabors.ImageSharp.PixelFormats;
     using System.Collections;
     using System.Diagnostics;
 
@@ -49,7 +55,13 @@ namespace ImageResizer
 
                 // those three values are stored seperately so that the parameters passed can be added after the filename but before the extension
 
-                ImageResizer.ProcessImage(options, path, fileName, extension);
+                using (Image image = Image.Load(options.InputFile))
+                {
+                    byte[] imageAsBytes = ToByteArray(image, PngFormat.Instance);
+
+                    ImageResizer.ProcessImage(options, path, fileName, extension, imageAsBytes);
+                }
+
             }
             catch (System.IO.FileNotFoundException ex) // error handling for if the image cannot be found
             {
@@ -58,7 +70,19 @@ namespace ImageResizer
             }
 
         }
+        public static byte[] ToByteArray(Image image, IImageFormat imageFormat) 
+        {
+            // This function removes dependency on filesystem
+            // I.e it allows ImageResizer.Process image not to care about how you got the image (stored as a byte array)
+            // All the previously mentioned function cares about is simply that it has the image, not where you got it from
 
+            using (var memoryStream = new MemoryStream())
+            {
+                var imageEncoder = image.GetConfiguration().ImageFormatsManager.FindEncoder(imageFormat);
+                image.Save(memoryStream, imageEncoder);
+                return memoryStream.ToArray();
+            }
+        }
 
     }
 }
