@@ -4,14 +4,22 @@
 
 namespace ImageResizer
 {
-    using CommandLine.Text;
-    using CommandLine;
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.Processing;
     using SixLabors.ImageSharp.Processing.Processors.Transforms;
     using System.Diagnostics;
     using SixLabors.ImageSharp.PixelFormats;
-    using System.Collections;
+    using SixLabors.ImageSharp.Formats;
+    using SixLabors.ImageSharp.Advanced;
+    using SixLabors.ImageSharp.Formats.Png;
+    using SixLabors.ImageSharp.Formats.Bmp;
+    using SixLabors.ImageSharp.Formats.Gif;
+    using SixLabors.ImageSharp.Formats.Jpeg;
+    using SixLabors.ImageSharp.Formats.Pbm;
+    using SixLabors.ImageSharp.Formats.Tiff;
+    using SixLabors.ImageSharp.Formats.Tga;
+    using SixLabors.ImageSharp.Formats.Webp;
+    using System.Security.Cryptography;
 
     public static class ImageResizer
     {
@@ -68,8 +76,27 @@ namespace ImageResizer
             return new(width, height);
         }
 
+        public static IImageFormat GetImageFormat(string extension)
+        {
+            // Converts String representation of extension to imagesharp format
 
-        internal static void ProcessImage(Options options, string path, string fileName, string extension, byte[] imageAsBytes)
+            return extension.ToLower() switch
+            {
+                ".bmp" => BmpFormat.Instance,
+                ".gif" => GifFormat.Instance,
+                ".jpeg" => JpegFormat.Instance,
+                ".jpg" => JpegFormat.Instance,
+                ".jfif" => JpegFormat.Instance,
+                ".png" => PngFormat.Instance,
+                ".pbm" => PbmFormat.Instance,
+                ".tiff" => TiffFormat.Instance,
+                ".tga" => TgaFormat.Instance,
+                ".webp" => WebpFormat.Instance,
+                _ => PngFormat.Instance // FileFormat Unsupported by imageSharp
+            };
+        }
+
+        internal static byte[] ProcessImage(Options options, string extension,byte[] imageAsBytes)
         {
             IResampler sampler = KnownResamplers.Bicubic;
 
@@ -99,15 +126,47 @@ namespace ImageResizer
             stopWatch.Restart();
 
             // Creates a new image in memory
-            Image newImage = image;
+            byte[] newImageAsBytes = ToByteArray(image, GetImageFormat(extension));
 
-            // Save new image to hard drive
-            newImage.Save(GetOutputFile(options, path, fileName, extension));
 
             // Timekeeping
             Debug.WriteLine("Save image: " + stopWatch.ElapsedMilliseconds);
             stopWatch.Stop();
+
+
+            return newImageAsBytes;
         }
+
+        public static byte[] ToByteArray(Image image, IImageFormat imageFormat)
+        {
+            // This function removes dependency on filesystem
+            // I.e it allows ImageResizer.Process image not to care about how you got the image (stored as a byte array)
+            // All the previously mentioned function cares about is simply that it has the image, not where you got it from
+
+            using (var memoryStream = new MemoryStream())
+            {
+                var imageEncoder = image.GetConfiguration().ImageFormatsManager.FindEncoder(imageFormat);
+                image.Save(memoryStream, imageEncoder);
+                return memoryStream.ToArray();
+            }
+        }
+
+        public static byte[] ToByteArray(Image image) 
+        {
+            // If imageformat is unknown default to png
+            // This function removes dependency on filesystem
+            // I.e it allows ImageResizer.Process image not to care about how you got the image (stored as a byte array)
+            // All the previously mentioned function cares about is simply that it has the image, not where you got it from
+
+            using (var memoryStream = new MemoryStream())
+            {
+                var imageEncoder = image.GetConfiguration().ImageFormatsManager.FindEncoder(PngFormat.Instance);
+                image.Save(memoryStream, imageEncoder);
+                return memoryStream.ToArray();
+            }
+        }
+
+
     }
 }
 

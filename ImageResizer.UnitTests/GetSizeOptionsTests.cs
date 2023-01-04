@@ -1,9 +1,9 @@
+using NUnit.Framework;
+
 namespace ImageResizer.UnitTests
 {
-    using NUnit.Framework;
     using SixLabors.ImageSharp;
     using SixLabors.ImageSharp.PixelFormats;
-    using SixLabors.ImageSharp.Processing;
 
     public class GetSizeOptionsTests
     {

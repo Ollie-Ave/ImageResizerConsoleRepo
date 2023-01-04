@@ -10,9 +10,10 @@ namespace ImageResizer
     using SixLabors.ImageSharp.Advanced;
     using SixLabors.ImageSharp.Formats;
     using SixLabors.ImageSharp.Formats.Png;
-    using SixLabors.ImageSharp.PixelFormats;
     using System.Collections;
     using System.Diagnostics;
+    using System.Net;
+    using System.Reflection;
 
     public class Program
     {
@@ -42,25 +43,53 @@ namespace ImageResizer
                 Options options = new(commandLineOptions);  
 
                 // Used if you want the processed imaged to be dumped in the 'bin' folder
-                //string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                string path = "C:\\Users\\oliver\\Downloads";
 
                 // Used if you want the processed image to be spat out into the same directory as the input
                 // Ex: C:\Users\oliver\Downloads
-                string path = Path.GetFullPath(options.InputFile).Replace(Path.GetFileName(options.InputFile), string.Empty);
+                //string path = Path.GetFullPath(options.InputFile).Replace(Path.GetFileName(options.InputFile), string.Empty);
+
+                // Img url
+                string url = "https://cdn.pixabay.com/photo/2014/12/16/22/25/woman-570883_1280.jpg";
 
                 // The name of the inputted image (without extension)
-                string fileName = Path.GetFileNameWithoutExtension(options.InputFile);
+                string fileName = Path.GetFileNameWithoutExtension(url);
+
                 // gets the file extension of the inputted image
                 string extension = Path.GetExtension(options.InputFile);
 
                 // those three values are stored seperately so that the parameters passed can be added after the filename but before the extension
 
-                using (Image image = Image.Load(options.InputFile))
-                {
-                    byte[] imageAsBytes = ToByteArray(image, PngFormat.Instance);
+                //using (Image image = Image.Load(options.InputFile))
+                //{
+                //    IImageFormat format = ImageResizer.GetImageFormat(extension);
 
-                    ImageResizer.ProcessImage(options, path, fileName, extension, imageAsBytes);
+                //    byte[] imageAsBytes = ToByteArray(image, format);
+
+                //    byte[] newImageAsBytes = ImageResizer.ProcessImage(options, extension, imageAsBytes);
+
+                //    Image newImage = Image.Load(newImageAsBytes);
+
+                //    newImage.Save(ImageResizer.GetOutputFile(options, path, fileName, extension));
+                //}
+
+                using (WebClient webClient = new())
+                {
+                    // Grab the byte array from requested location
+                    byte[] data = webClient.DownloadData(url);
+                    extension = Path.GetExtension(url);
+
+                    // Process image
+                    byte[] newImageAsBytes = ImageResizer.ProcessImage(options, extension ,data);
+
+                    // Convert processed byte array into imagesharp format
+                    Image newImage = Image.Load(newImageAsBytes);
+
+
+                    // Save image to hard drive
+                    newImage.Save(ImageResizer.GetOutputFile(options, path, fileName, extension));
                 }
+
 
             }
             catch (System.IO.FileNotFoundException ex) // error handling for if the image cannot be found
