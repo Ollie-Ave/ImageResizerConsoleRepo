@@ -7,13 +7,9 @@ namespace ImageResizer
 {
     using CommandLine;
     using SixLabors.ImageSharp;
-    using SixLabors.ImageSharp.Advanced;
-    using SixLabors.ImageSharp.Formats;
-    using SixLabors.ImageSharp.Formats.Png;
     using System.Collections;
     using System.Diagnostics;
     using System.Net;
-    using System.Reflection;
 
     public class Program
     {
@@ -85,10 +81,9 @@ namespace ImageResizer
                     // Convert processed byte array into imagesharp format
                     Image newImage = Image.Load(newImageAsBytes);
 
-
                     // Save image to hard drive
                     newImage.Save(ImageResizer.GetOutputFile(options, path, fileName, extension));
-                }
+                } // Dispose
 
 
             }
@@ -99,19 +94,7 @@ namespace ImageResizer
             }
 
         }
-        public static byte[] ToByteArray(Image image, IImageFormat imageFormat) 
-        {
-            // This function removes dependency on filesystem
-            // I.e it allows ImageResizer.Process image not to care about how you got the image (stored as a byte array)
-            // All the previously mentioned function cares about is simply that it has the image, not where you got it from
 
-            using (var memoryStream = new MemoryStream())
-            {
-                var imageEncoder = image.GetConfiguration().ImageFormatsManager.FindEncoder(imageFormat);
-                image.Save(memoryStream, imageEncoder);
-                return memoryStream.ToArray();
-            }
-        }
 
     }
 }
