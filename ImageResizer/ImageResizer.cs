@@ -151,22 +151,6 @@ namespace ImageResizer
             }
         }
 
-        public static byte[] ToByteArray(Image image) 
-        {
-            // If imageformat is unknown default to png
-            // This function removes dependency on filesystem
-            // I.e it allows ImageResizer.Process image not to care about how you got the image (stored as a byte array)
-            // All the previously mentioned function cares about is simply that it has the image, not where you got it from
-
-            using (var memoryStream = new MemoryStream())
-            {
-                var imageEncoder = image.GetConfiguration().ImageFormatsManager.FindEncoder(PngFormat.Instance);
-                image.Save(memoryStream, imageEncoder);
-                return memoryStream.ToArray();
-            }
-        }
-
-
     }
 }
 
