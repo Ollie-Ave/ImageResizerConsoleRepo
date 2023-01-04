@@ -38,7 +38,7 @@ namespace ImageResizer
             {
                 Options options = new(commandLineOptions);  
 
-                // Used if you want the processed imaged to be dumped in the 'bin' folder
+                // Temporary output folder
                 string path = "C:\\Users\\oliver\\Downloads";
 
                 // Used if you want the processed image to be spat out into the same directory as the input
@@ -46,13 +46,13 @@ namespace ImageResizer
                 //string path = Path.GetFullPath(options.InputFile).Replace(Path.GetFileName(options.InputFile), string.Empty);
 
                 // Img url
-                string url = "https://cdn.pixabay.com/photo/2014/12/16/22/25/woman-570883_1280.jpg";
+                string url = options.InputFile;
 
                 // The name of the inputted image (without extension)
                 string fileName = Path.GetFileNameWithoutExtension(url);
 
                 // gets the file extension of the inputted image
-                string extension = Path.GetExtension(options.InputFile);
+                string extension = Path.GetExtension(url);
 
                 // those three values are stored seperately so that the parameters passed can be added after the filename but before the extension
 
@@ -73,7 +73,6 @@ namespace ImageResizer
                 {
                     // Grab the byte array from requested location
                     byte[] data = webClient.DownloadData(url);
-                    extension = Path.GetExtension(url);
 
                     // Process image
                     byte[] newImageAsBytes = ImageResizer.ProcessImage(options, extension ,data);
