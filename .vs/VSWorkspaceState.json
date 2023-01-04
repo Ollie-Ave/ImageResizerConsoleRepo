@@ -1,6 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\ImageResizer",
+    "\\ImageResizer.UnitTests"
   ],
   "SelectedNode": "\\ImageResizerConsole.sln",
   "PreviewInSolutionExplorer": false

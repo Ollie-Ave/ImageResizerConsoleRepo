@@ -78,18 +78,18 @@ namespace ImageResizer
                         // Save image to hard drive
                         newImage.Save(ImageResizer.GetOutputFile(options, outputPath));
                     }
-                    catch(WebException exeption)
+                    catch(WebException exception)
                     {
-                        Debug.WriteLine($"Error: {exeption.Message}");
+                        Debug.WriteLine($"Error: {exception.Message}");
                     }
 
 
                 } // Dispose
             }
-            catch (System.IO.FileNotFoundException ex) // error handling for if the image cannot be found
+            catch (System.IO.FileNotFoundException exception) // error handling for if the image cannot be found
             {
                 Debug.WriteLine("No image found");
-                Debug.WriteLine(ex.Message);
+                Debug.WriteLine(exception.Message);
             }
 
         }
